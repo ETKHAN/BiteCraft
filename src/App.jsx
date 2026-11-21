@@ -55,5 +55,5 @@ function BiteCraftApp() {
 }
 
 export default function App() {
-  return <BrowserRouter><BiteCraftApp /></BrowserRouter>;
+  return <BrowserRouter basename={import.meta.env.BASE_URL}><BiteCraftApp /></BrowserRouter>;
 }
