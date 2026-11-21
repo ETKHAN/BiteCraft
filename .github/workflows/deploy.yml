@@ -43,7 +43,7 @@ jobs:
         run: cp dist/index.html dist/404.html
 
       - name: Create submission source ZIP
-        run: zip -r '24i-2118_EtizazAli_BCY-5A_A#02.zip' . -x 'node_modules/*' 'dist/*' '.git/*' '*.zip'
+        run: zip -r '24i-2118_EtizazAli_BCY-5A_A#02.zip' . -x 'node_modules/*' 'dist/*' '.git/*' '*.zip' '.env*' '**/.env*' '*.local'
 
       - name: Upload submission source ZIP
         uses: actions/upload-artifact@v4
