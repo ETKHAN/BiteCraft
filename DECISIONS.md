@@ -54,7 +54,7 @@ These decisions connect the three investigated reference-site problems to implem
 - **Alternative:** Submit search through full-page navigation and reset the current filter/cart context.
 - **Reason:** Immediate filtering gives clear feedback while preserving order progress. The hidden-selection notice prevents customers from assuming that a filtered-out dish has been removed from the cart.
 - **Tradeoff:** Search, category, dietary, and sort state must be coordinated. No-match results must remain distinct from an empty dataset and asynchronous loading failure.
-- **Implemented code location:** `src/pages/MenuPage.jsx` (controlled query, derived results, hidden-selection notice, and reset action); `src/context/OrderContext.jsx` (shared cart and localStorage persistence); `src/rules/orderRules.js` (cart quantity revalidation).
+- **Implemented code location:** `src/pages/MenuPage.jsx` (controlled query, derived results, hidden-selection notice, and reset action); `src/context/OrderContext.jsx` (shared cart and localStorage persistence); `src/utils/orderRules.js` (cart quantity revalidation).
 - **Evidence capture:** Save the reference search-results screenshot and a BiteCraft screenshot showing a non-matching query (for example, “sushi”), the no-results message, hidden-selected-item notice, and preserved cart count. Capture the reset result as a separate step if one image cannot show the behaviour.
 - **Verification steps:**
   1. Add a dish to the cart.
