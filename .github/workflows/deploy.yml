@@ -42,6 +42,16 @@ jobs:
       - name: Support direct nested-route requests on GitHub Pages
         run: cp dist/index.html dist/404.html
 
+      - name: Create submission source ZIP
+        run: zip -r '24i-2118_EtizazAli_BCY-5A_A#02.zip' . -x 'node_modules/*' 'dist/*' '.git/*' '*.zip'
+
+      - name: Upload submission source ZIP
+        uses: actions/upload-artifact@v4
+        with:
+          name: BiteCraft-source-code-ZIP
+          path: '24i-2118_EtizazAli_BCY-5A_A#02.zip'
+          if-no-files-found: error
+
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
