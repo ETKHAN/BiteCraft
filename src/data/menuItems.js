@@ -16,6 +16,7 @@ export const menuItems = [
     price: 1250,
     prepTime: 15,
     dietaryTags: ['Halal'],
+    portions: ['Single', 'Double'],
     options: {
       spiceLevel: ['Mild', 'Medium', 'Hot'],
       portion: ['Single', 'Double'],
@@ -31,6 +32,7 @@ export const menuItems = [
     price: 980,
     prepTime: 14,
     dietaryTags: ['Halal', 'Spicy'],
+    portions: ['Regular', 'Large'],
     options: {
       spiceLevel: ['Mild', 'Medium', 'Hot'],
       portion: ['Regular', 'Large'],
@@ -46,6 +48,7 @@ export const menuItems = [
     price: 850,
     prepTime: 12,
     dietaryTags: ['Halal', 'Vegetarian', 'Spicy'],
+    portions: ['Regular', 'Large'],
     options: {
       spiceLevel: ['Mild', 'Medium', 'Hot'],
       portion: ['Regular', 'Large'],
@@ -61,6 +64,7 @@ export const menuItems = [
     price: 1850,
     prepTime: 25,
     dietaryTags: ['Halal', 'Spicy'],
+    portions: ['Half', 'Full'],
     options: {
       spiceLevel: ['Mild', 'Medium', 'Hot'],
       portion: ['Half', 'Full'],
@@ -76,6 +80,7 @@ export const menuItems = [
     price: 1450,
     prepTime: 22,
     dietaryTags: ['Halal', 'Spicy'],
+    portions: ['2 Pieces', '4 Pieces'],
     options: {
       spiceLevel: ['Mild', 'Medium', 'Hot'],
       portion: ['2 Pieces', '4 Pieces'],
@@ -91,6 +96,7 @@ export const menuItems = [
     price: 1650,
     prepTime: 20,
     dietaryTags: ['Halal', 'Spicy'],
+    portions: ['2 Kebabs', '4 Kebabs'],
     options: {
       spiceLevel: ['Mild', 'Medium', 'Hot'],
       portion: ['2 Kebabs', '4 Kebabs'],
@@ -106,6 +112,7 @@ export const menuItems = [
     price: 520,
     prepTime: 9,
     dietaryTags: ['Halal', 'Vegetarian', 'Spicy'],
+    portions: ['Regular', 'Large'],
     options: {
       spiceLevel: ['Mild', 'Medium', 'Hot'],
       portion: ['Regular', 'Large'],
@@ -121,6 +128,7 @@ export const menuItems = [
     price: 780,
     prepTime: 13,
     dietaryTags: ['Halal', 'Spicy'],
+    portions: ['4 Pieces', '8 Pieces'],
     options: {
       spiceLevel: ['Mild', 'Medium', 'Hot'],
       portion: ['4 Pieces', '8 Pieces'],
@@ -136,6 +144,7 @@ export const menuItems = [
     price: 350,
     prepTime: 7,
     dietaryTags: ['Halal', 'Vegetarian'],
+    portions: ['1 Naan', '2 Naan'],
     options: {
       spiceLevel: [],
       portion: ['1 Naan', '2 Naan'],
@@ -151,6 +160,7 @@ export const menuItems = [
     price: 380,
     prepTime: 5,
     dietaryTags: ['Halal', 'Vegetarian'],
+    portions: ['Regular', 'Large'],
     options: {
       temperature: ['Chilled'],
       portion: ['Regular', 'Large'],
@@ -166,6 +176,7 @@ export const menuItems = [
     price: 280,
     prepTime: 8,
     dietaryTags: ['Halal', 'Vegetarian'],
+    portions: ['Regular', 'Large'],
     options: {
       temperature: ['Hot'],
       portion: ['Regular', 'Large'],
@@ -181,6 +192,7 @@ export const menuItems = [
     price: 320,
     prepTime: 5,
     dietaryTags: ['Halal', 'Vegetarian'],
+    portions: ['Regular', 'Large'],
     options: {
       temperature: ['Chilled'],
       portion: ['Regular', 'Large'],

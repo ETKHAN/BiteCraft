@@ -95,3 +95,6 @@ export function getAvailability(item) {
   }
   return { label: 'In stock', tone: 'ok' }
 }
+
+// Compatibility name used by the shared order context.
+export const validateItemQuantity = validateQuantity;
