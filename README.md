@@ -9,7 +9,7 @@
 ## Project links
 
 - **GitHub repository:** https://github.com/ETKHAN/BiteCraft
-- **Deployed website:** Pending publication and live verification. Add the final public URL here before submission.
+- **GitHub Pages target URL:** https://etkhan.github.io/BiteCraft/ (deployment must complete successfully before this is submitted as a verified live link).
 - **Final submitted commit:** Record the full commit SHA after the final documentation, test, and deployment changes have been committed.
 
 ## Project overview
@@ -61,6 +61,10 @@ Navigation uses React Router. Use the links inside the application or browser Ba
 1. **Availability:** A customer may order 1–5 units of one menu item, subject to its current stock. Sold-out items cannot be added.
 2. **Delivery eligibility:** Delivery is available only to F-6, F-7, F-8, F-10, F-11, G-8, G-9, G-10, G-11, and H-11. Self-pickup at F-7 Markaz is not restricted by sector.
 3. **Delivery pricing:** Pickup has no minimum and no fee. Delivery requires a PKR 1,000 food subtotal. The delivery fee is PKR 200 from PKR 1,000 to PKR 2,499, and free from PKR 2,500.
+
+## Deployment
+
+The repository includes a GitHub Actions workflow at `.github/workflows/deploy.yml`. It runs lint, the Node test suite, and the Vite production build, then publishes `dist/` to GitHub Pages. The Vite base path and React Router basename are configured for the `/BiteCraft/` project-site path. After the first workflow run, open the repository's **Actions** tab and confirm that the **Deploy to GitHub Pages** workflow completes successfully. Then open `https://etkhan.github.io/BiteCraft/` and verify `/menu`, `/items/<valid-id>`, `/cart`, `/checkout`, and a direct nested-route refresh. If GitHub Pages asks for a publishing source, select **GitHub Actions** under Settings → Pages.
 
 ## Installation and development
 
