@@ -15,13 +15,19 @@ function readSavedCart() {
   }
 }
 
+// Enforce the per-menu-item cap across customisation variants, not just each cart row.
 function clampCart(lines, items) {
   if (!items.length) return lines;
+  const totals = new Map();
   return lines.flatMap((line) => {
     const item = items.find((entry) => entry.id === line.id);
     if (!item) return [];
-    const quantity = Math.min(line.quantity, 5, item.stockCount);
-    return validateItemQuantity(quantity, item.stockCount).valid ? [{ ...line, quantity }] : [];
+    const alreadySelected = totals.get(line.id) || 0;
+    const remaining = Math.max(0, Math.min(5, item.stockCount) - alreadySelected);
+    const quantity = Math.min(line.quantity, remaining);
+    if (!validateItemQuantity(quantity, item.stockCount).valid) return [];
+    totals.set(line.id, alreadySelected + quantity);
+    return [{ ...line, quantity }];
   });
 }
 
@@ -34,15 +40,14 @@ export function OrderProvider({ items, children }) {
   }, [cart]);
 
   const addItem = (item, quantity = 1, options = {}) => {
-    const existing = cart.find((line) => line.id === item.id && JSON.stringify(line.options) === JSON.stringify(options));
-    const nextQuantity = quantity + (existing?.quantity || 0);
-    const check = validateItemQuantity(nextQuantity, item.stockCount);
+    const totalForItem = cart.filter((line) => line.id === item.id).reduce((sum, line) => sum + line.quantity, 0);
+    const check = validateItemQuantity(totalForItem + quantity, item.stockCount);
     if (!check.valid) return check;
     setStoredCart((current) => {
       const safe = clampCart(current, items);
       const match = safe.find((line) => line.id === item.id && JSON.stringify(line.options) === JSON.stringify(options));
       return match
-        ? safe.map((line) => line === match ? { ...line, quantity: nextQuantity } : line)
+        ? safe.map((line) => line === match ? { ...line, quantity: line.quantity + quantity } : line)
         : [...safe, { id: item.id, quantity, options }];
     });
     return { valid: true, message: `${item.name} added to your cart.` };
@@ -51,7 +56,9 @@ export function OrderProvider({ items, children }) {
   const updateQuantity = (id, options, quantity) => {
     const item = items.find((entry) => entry.id === id);
     if (!item) return { valid: false, message: 'This menu item is no longer available.' };
-    const check = validateItemQuantity(quantity, item.stockCount);
+    const otherQuantity = cart.filter((line) => line.id === id && JSON.stringify(line.options) !== JSON.stringify(options))
+      .reduce((sum, line) => sum + line.quantity, 0);
+    const check = validateItemQuantity(quantity + otherQuantity, item.stockCount);
     if (!check.valid) return check;
     setStoredCart((current) => clampCart(current, items).map((line) =>
       line.id === id && JSON.stringify(line.options) === JSON.stringify(options) ? { ...line, quantity } : line
