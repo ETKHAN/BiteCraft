@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { OrderContext } from './orderContext.js';
-import { validateItemQuantity } from '../rules/orderRules.js';
+import { validateItemQuantity } from '../utils/orderRules.js';
 
 const STORAGE_KEY = 'bitecraft-cart-v1';
 
