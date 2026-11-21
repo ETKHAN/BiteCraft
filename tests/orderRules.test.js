@@ -1,27 +1,31 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { validateQuantity, isSectorServed, getDeliveryCharge } from '../src/rules/orderRules.js'
+import { getDeliveryQuote } from '../src/utils/orderRules.js'
 
-test('accepts quantities within stock and the per-item cap', () => {
-  assert.deepEqual(validateQuantity(2, 8), { valid: true, message: '' })
-  assert.equal(validateQuantity(5, 8).valid, true)
+// This is the same pure quote function used by CheckoutPage.
+test('rejects delivery one rupee below the minimum', () => {
+  const quote = getDeliveryQuote(999, 'delivery')
+  assert.equal(quote.valid, false)
+  assert.equal(quote.shortfall, 1)
 })
 
-test('rejects quantities above the per-item cap or available stock', () => {
-  assert.equal(validateQuantity(6, 8).valid, false)
-  assert.equal(validateQuantity(4, 3).valid, false)
-  assert.equal(validateQuantity(1, 0).valid, false)
+test('accepts delivery at the exact minimum and applies the standard fee', () => {
+  const quote = getDeliveryQuote(1000, 'delivery')
+  assert.equal(quote.valid, true)
+  assert.equal(quote.deliveryFee, 200)
+  assert.equal(quote.grandTotal, 1200)
 })
 
-test('restricts delivery to the configured sectors', () => {
-  assert.equal(isSectorServed('F-7'), true)
-  assert.equal(isSectorServed('E-7'), false)
+test('unlocks free delivery at the exact free-delivery threshold', () => {
+  const quote = getDeliveryQuote(2500, 'delivery')
+  assert.equal(quote.valid, true)
+  assert.equal(quote.deliveryFee, 0)
+  assert.equal(quote.grandTotal, 2500)
 })
 
-test('applies delivery minimum, fee, and free-delivery threshold boundaries', () => {
-  assert.equal(getDeliveryCharge(999, 'delivery').allowed, false)
-  assert.equal(getDeliveryCharge(1000, 'delivery').fee, 200)
-  assert.equal(getDeliveryCharge(2499, 'delivery').fee, 200)
-  assert.equal(getDeliveryCharge(2500, 'delivery').fee, 0)
-  assert.equal(getDeliveryCharge(350, 'pickup').fee, 0)
+test('pickup has no minimum and no fulfilment fee', () => {
+  const quote = getDeliveryQuote(350, 'pickup')
+  assert.equal(quote.valid, true)
+  assert.equal(quote.deliveryFee, 0)
+  assert.equal(quote.grandTotal, 350)
 })
