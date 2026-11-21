@@ -1,7 +1,8 @@
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 
-// https://vite.dev/config/
+// GitHub Pages serves this repository beneath /BiteCraft/.
 export default defineConfig({
+  base: '/BiteCraft/',
   plugins: [react()],
 })
