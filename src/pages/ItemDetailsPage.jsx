@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { useOrder } from '../context/OrderContext.js';
+import { useOrder } from '../context/useOrder.js';
 import { validateItemQuantity } from '../utils/orderRules.js';
 
 export default function ItemDetailsPage({ items }) {

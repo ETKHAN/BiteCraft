@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import MenuCard from '../components/MenuCard.jsx';
-import { useOrder } from '../context/OrderContext.js';
+import { useOrder } from '../context/useOrder.js';
 import { SUPPORTED_SECTORS } from '../utils/orderRules.js';
 
 export default function MenuPage({ items, loading, error, onRetry, onFailureDemo, onRestockDemo, failureDemo, restockDemo }) {

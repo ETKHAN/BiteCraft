@@ -1,7 +1,7 @@
-import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { OrderContext } from './orderContext.js';
 import { validateItemQuantity } from '../utils/orderRules.js';
 
-const OrderContext = createContext(null);
 const STORAGE_KEY = 'bitecraft-cart-v1';
 
 function readSavedCart() {
@@ -80,10 +80,4 @@ export function OrderProvider({ items, children }) {
   const subtotal = lines.reduce((sum, line) => sum + line.subtotal, 0);
 
   return <OrderContext.Provider value={{ cart, lines, itemCount, subtotal, addItem, updateQuantity, removeItem, clearCart }}>{children}</OrderContext.Provider>;
-}
-
-export function useOrder() {
-  const context = useContext(OrderContext);
-  if (!context) throw new Error('useOrder must be used inside OrderProvider');
-  return context;
 }

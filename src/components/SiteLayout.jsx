@@ -1,5 +1,5 @@
 import { Link, NavLink, Outlet } from 'react-router-dom';
-import { useOrder } from '../context/OrderContext.js';
+import { useOrder } from '../context/useOrder.js';
 
 export default function SiteLayout() {
   const { itemCount } = useOrder();

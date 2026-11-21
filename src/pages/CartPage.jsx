@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useOrder } from '../context/OrderContext.js';
+import { useOrder } from '../context/useOrder.js';
 import { validateItemQuantity } from '../utils/orderRules.js';
 
 const money = (amount) => `PKR ${amount.toLocaleString('en-PK')}`;
