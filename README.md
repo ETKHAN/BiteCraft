@@ -64,7 +64,7 @@ Navigation uses React Router. Use the links inside the application or browser Ba
 
 ## Deployment
 
-The repository includes a GitHub Actions workflow at `.github/workflows/deploy.yml`. It runs lint, the Node test suite, and the Vite production build, then publishes `dist/` to GitHub Pages. The Vite base path and React Router basename are configured for the `/BiteCraft/` project-site path. After the first workflow run, open the repository's **Actions** tab and confirm that the **Deploy to GitHub Pages** workflow completes successfully. Then open `https://etkhan.github.io/BiteCraft/` and verify `/menu`, `/items/<valid-id>`, `/cart`, `/checkout`, and a direct nested-route refresh. If GitHub Pages asks for a publishing source, select **GitHub Actions** under Settings → Pages.
+The repository includes a GitHub Actions workflow at `.github/workflows/deploy.yml`. It runs lint, the Node test suite, and the Vite production build, then publishes `dist/` to GitHub Pages. The workflow also creates the required `24i-2118_EtizazAli_BCY-5A_A#02.zip` source archive (excluding dependencies, build output, Git metadata, local environment files, and other ZIP files) and uploads it as the `BiteCraft-source-code-ZIP` workflow artifact. The Vite base path and React Router basename are configured for the `/BiteCraft/` project-site path. After the first workflow run, open the repository's **Actions** tab and confirm that the **Deploy to GitHub Pages** workflow completes successfully. Then open `https://etkhan.github.io/BiteCraft/` and verify `/menu`, `/items/<valid-id>`, `/cart`, `/checkout`, and a direct nested-route refresh. If GitHub Pages asks for a publishing source, select **GitHub Actions** under Settings → Pages.
 
 ## Installation and development
 
