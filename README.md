@@ -109,7 +109,7 @@ The automated pricing-rule test uses Node.js `node:test` and `node:assert/strict
 | Menu card | `src/components/MenuCard.jsx` | `MenuCard` |
 | Shared cart state | `src/context/OrderContext.jsx` | `OrderProvider`, `addItem`, `updateQuantity`, `removeItem` |
 | Cart context hook | `src/context/useOrder.js` | `useOrder` |
-| Cart quantity/availability rules | `src/rules/orderRules.js` | `validateQuantity`, `getLineProblem` |
+| Shared business rules | `src/utils/orderRules.js` | `validateItemQuantity`, `getDeliveryQuote`, `validateDeliverySector` |
 | Checkout rules and quote | `src/utils/orderRules.js` | `getDeliveryQuote`, `validateDeliverySector` |
 | Checkout form | `src/pages/CheckoutPage.jsx` | `CheckoutPage`, controlled fields and validation |
 | Async menu loading | `src/services/menuService.js` | `loadMenu` |
