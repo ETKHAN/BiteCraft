@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { OrderContext } from './orderContext.js';
-import { validateItemQuantity } from '../utils/orderRules.js';
+import { validateItemQuantity } from '../rules/orderRules.js';
 
 const STORAGE_KEY = 'bitecraft-cart-v1';
 
@@ -31,12 +31,16 @@ function clampCart(lines, items) {
   });
 }
 
-export function OrderProvider({ items, children }) {
+export function OrderProvider({ items = [], children }) {
   const [storedCart, setStoredCart] = useState(readSavedCart);
   const cart = useMemo(() => clampCart(storedCart, items), [storedCart, items]);
 
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
+    } catch {
+      // Keep the in-memory cart usable if browser storage is unavailable.
+    }
   }, [cart]);
 
   const addItem = (item, quantity = 1, options = {}) => {
